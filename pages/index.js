@@ -53,30 +53,33 @@ export default function Home() {
       <Head>
         <title>Ihancer - AI HDR Photo Enhancer</title>
         <meta name="description" content="Generate stunning HDR images from your photos with AI. Fast, easy, and free." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
       </Head>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-800 p-4">
-        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 transition-all">
+      <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800 p-4 transition-colors duration-300">
+        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8 transition-all">
           
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-5">
             <Image 
               src="https://ar-hosting.pages.dev/1751679958097.jpg" 
               alt="Ihancer Logo"
-              width={48}
-              height={48}
-              className="rounded-full"
+              width={52}
+              height={52}
+              className="rounded-full shadow-md"
             />
-            <h1 className="text-4xl font-bold ml-4 text-gray-900">🧠 Ihancer</h1>
+            <h1 className="text-5xl font-extrabold ml-4 text-gray-900 tracking-tight">🧠 Ihancer</h1>
           </div>
-          <p className="text-gray-600 mb-8">
-            Ubah foto biasa menjadi gambar HDR yang memukau dengan kekuatan AI.
+          <p className="text-gray-500 mb-8 text-lg">
+            Ubah foto biasa menjadi gambar <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 font-semibold">HDR</span> yang memukau dengan kekuatan AI.
           </p>
 
           <div className="space-y-6">
             <div>
-              <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700 mb-2">
-                Pilih Gambar
+              <label htmlFor="file-upload" className="block text-sm font-bold text-gray-700 mb-2">
+                Pilih Gambar Anda
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl hover:border-indigo-500 transition-colors duration-300">
                 <div className="space-y-1 text-center">
                   <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -96,14 +99,14 @@ export default function Home() {
             {preview && !imageUrl && (
               <div className="text-center">
                 <p className="text-sm font-medium text-gray-700 mb-2">Pratinjau:</p>
-                <img src={preview} alt="Image preview" className="mx-auto max-h-60 rounded-lg shadow-md" />
+                <img src={preview} alt="Image preview" className="mx-auto max-h-60 rounded-lg shadow-lg" />
               </div>
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="method" className="block text-sm font-medium text-gray-700">Metode Peningkatan</label>
-                <select id="method" value={method} onChange={(e) => setMethod(Number(e.target.value))} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <label htmlFor="method" className="block text-sm font-bold text-gray-700">Metode Peningkatan</label>
+                <select id="method" value={method} onChange={(e) => setMethod(Number(e.target.value))} className="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-sm">
                   <option value={1}>Metode 1 (Cepat)</option>
                   <option value={2}>Metode 2 (Seimbang)</option>
                   <option value={3}>Metode 3 (Kualitas)</option>
@@ -111,8 +114,8 @@ export default function Home() {
                 </select>
               </div>
               <div>
-                <label htmlFor="size" className="block text-sm font-medium text-gray-700">Resolusi Output</label>
-                <select id="size" value={size} onChange={(e) => setSize(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <label htmlFor="size" className="block text-sm font-bold text-gray-700">Resolusi Output</label>
+                <select id="size" value={size} onChange={(e) => setSize(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-sm">
                   <option value="low">Rendah</option>
                   <option value="medium">Sedang</option>
                   <option value="high">Tinggi</option>
@@ -125,7 +128,7 @@ export default function Home() {
             <button
               onClick={submit}
               disabled={loading || !file}
-              className="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300 disabled:cursor-not-allowed"
+              className="w-full flex justify-center items-center px-6 py-4 border border-transparent text-base font-bold rounded-lg shadow-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:from-indigo-400 disabled:to-purple-400 disabled:cursor-not-allowed transform hover:scale-105 transition-transform duration-300"
             >
               {loading ? (
                 <>
@@ -139,16 +142,16 @@ export default function Home() {
             </button>
           </div>
 
-          {error && <p className="text-red-600 mt-6 text-center">{error}</p>}
+          {error && <p className="text-red-500 mt-6 text-center font-semibold">{error}</p>}
 
           {imageUrl && (
             <div className="mt-8 pt-6 border-t border-gray-200">
-              <h2 className="text-2xl font-semibold text-center text-gray-800 mb-4">Hasil Telah Siap!</h2>
-              <img src={imageUrl} alt="Enhanced HDR Result" className="rounded-lg shadow-lg mx-auto mb-4" />
+              <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Hasil Telah Siap!</h2>
+              <img src={imageUrl} alt="Enhanced HDR Result" className="rounded-xl shadow-2xl mx-auto mb-4" />
               <a
                 href={imageUrl}
                 download="enhanced-hdr-image.jpg"
-                className="w-full mt-4 flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="w-full mt-4 flex justify-center items-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-lg text-white bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transform hover:scale-105 transition-transform duration-300"
               >
                 ⬇️ Unduh Hasil Gambar
               </a>
@@ -156,9 +159,9 @@ export default function Home() {
           )}
         </div>
         <footer className="mt-8 text-center text-gray-500 text-sm">
-          <p>Ditenagai oleh <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-gray-800">Vercel Team</a></p>
+          <p>Ditenagai oleh <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Vercel Team</a></p>
         </footer>
       </div>
     </>
   );
-    }
+                }
