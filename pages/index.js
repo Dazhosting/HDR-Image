@@ -57,56 +57,57 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
       </Head>
-      <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800 p-4 transition-colors duration-300">
-        <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8 transition-all">
+      
+      <div className="page-container">
+        <div className="main-container">
           
-          <div className="flex items-center mb-5">
+          <div className="header">
             <Image 
               src="https://ar-hosting.pages.dev/1751679958097.jpg" 
               alt="Ihancer Logo"
               width={52}
               height={52}
-              className="rounded-full shadow-md"
+              className="header-logo"
             />
-            <h1 className="text-5xl font-extrabold ml-4 text-gray-900 tracking-tight">🧠 Ihancer</h1>
+            <h1>🧠 Ihancer</h1>
           </div>
-          <p className="text-gray-500 mb-8 text-lg">
-            Ubah foto biasa menjadi gambar <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 font-semibold">HDR</span> yang memukau dengan kekuatan AI.
+          <p className="subheading">
+            Ubah foto biasa menjadi gambar <span className="highlight">HDR</span> yang memukau dengan kekuatan AI.
           </p>
 
-          <div className="space-y-6">
+          <div className="form-container">
             <div>
-              <label htmlFor="file-upload" className="block text-sm font-bold text-gray-700 mb-2">
+              <label htmlFor="file-upload" className="file-upload-label">
                 Pilih Gambar Anda
               </label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-xl hover:border-indigo-500 transition-colors duration-300">
-                <div className="space-y-1 text-center">
-                  <svg className="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+              <div className="file-drop-area">
+                <div className="file-drop-content">
+                  <svg stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
                     <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                  <div className="file-text">
+                    <label htmlFor="file-upload" className="upload-link">
                       <span>Unggah file</span>
                       <input id="file-upload" name="file-upload" type="file" className="sr-only" accept="image/*" onChange={handleFileChange} />
                     </label>
-                    <p className="pl-1">atau seret dan lepas</p>
+                    <p className="file-hint">atau seret dan lepas</p>
                   </div>
-                  <p className="text-xs text-gray-500">PNG, JPG, GIF hingga 10MB</p>
+                  <p className="file-hint-small">PNG, JPG, GIF hingga 10MB</p>
                 </div>
               </div>
             </div>
 
             {preview && !imageUrl && (
-              <div className="text-center">
-                <p className="text-sm font-medium text-gray-700 mb-2">Pratinjau:</p>
-                <img src={preview} alt="Image preview" className="mx-auto max-h-60 rounded-lg shadow-lg" />
+              <div className="image-preview-container">
+                <p className="image-preview-label">Pratinjau:</p>
+                <img src={preview} alt="Image preview" className="image-preview" />
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="controls-grid">
               <div>
-                <label htmlFor="method" className="block text-sm font-bold text-gray-700">Metode Peningkatan</label>
-                <select id="method" value={method} onChange={(e) => setMethod(Number(e.target.value))} className="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-sm">
+                <label htmlFor="method" className="select-label">Metode Peningkatan</label>
+                <select id="method" value={method} onChange={(e) => setMethod(Number(e.target.value))} className="select-input">
                   <option value={1}>Metode 1 (Cepat)</option>
                   <option value={2}>Metode 2 (Seimbang)</option>
                   <option value={3}>Metode 3 (Kualitas)</option>
@@ -114,8 +115,8 @@ export default function Home() {
                 </select>
               </div>
               <div>
-                <label htmlFor="size" className="block text-sm font-bold text-gray-700">Resolusi Output</label>
-                <select id="size" value={size} onChange={(e) => setSize(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2.5 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-sm">
+                <label htmlFor="size" className="select-label">Resolusi Output</label>
+                <select id="size" value={size} onChange={(e) => setSize(e.target.value)} className="select-input">
                   <option value="low">Rendah</option>
                   <option value="medium">Sedang</option>
                   <option value="high">Tinggi</option>
@@ -124,15 +125,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-8">
+          <div className="submit-button-container">
             <button
               onClick={submit}
               disabled={loading || !file}
-              className="w-full flex justify-center items-center px-6 py-4 border border-transparent text-base font-bold rounded-lg shadow-lg text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:from-indigo-400 disabled:to-purple-400 disabled:cursor-not-allowed transform hover:scale-105 transition-transform duration-300"
+              className="submit-button"
             >
               {loading ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -142,26 +143,331 @@ export default function Home() {
             </button>
           </div>
 
-          {error && <p className="text-red-500 mt-6 text-center font-semibold">{error}</p>}
+          {error && <p className="error-message">{error}</p>}
 
           {imageUrl && (
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">Hasil Telah Siap!</h2>
-              <img src={imageUrl} alt="Enhanced HDR Result" className="rounded-xl shadow-2xl mx-auto mb-4" />
+            <div className="results-container">
+              <h2 className="results-header">Hasil Telah Siap!</h2>
+              <img src={imageUrl} alt="Enhanced HDR Result" className="enhanced-image" />
               <a
                 href={imageUrl}
                 download="enhanced-hdr-image.jpg"
-                className="w-full mt-4 flex justify-center items-center px-6 py-3 border border-transparent text-base font-bold rounded-lg shadow-lg text-white bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transform hover:scale-105 transition-transform duration-300"
+                className="download-button"
               >
                 ⬇️ Unduh Hasil Gambar
               </a>
             </div>
           )}
         </div>
-        <footer className="mt-8 text-center text-gray-500 text-sm">
-          <p>Ditenagai oleh <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="font-medium text-gray-700 hover:text-indigo-600 transition-colors">Vercel Team</a></p>
+        <footer>
+          <p>Ditenagai oleh <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel Team</a></p>
         </footer>
       </div>
+
+      <style jsx global>{`
+        body {
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          margin: 0;
+          background-color: #f3f4f6;
+          color: #374151;
+          transition: color 0.3s;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+      `}</style>
+      
+      <style jsx>{`
+        .page-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          padding: 1rem;
+        }
+        .main-container {
+          width: 100%;
+          max-width: 42rem;
+          margin: 0 auto;
+          background-color: white;
+          border-radius: 1rem;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          padding: 2rem;
+          transition: all 0.3s;
+        }
+        .header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1.25rem;
+        }
+        .header-logo {
+          border-radius: 9999px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .header h1 {
+          font-size: 3rem;
+          font-weight: 800;
+          margin-left: 1rem;
+          color: #111827;
+          letter-spacing: -0.025em;
+        }
+        .subheading {
+          color: #6b7280;
+          margin-bottom: 2rem;
+          font-size: 1.125rem;
+          line-height: 1.75rem;
+        }
+        .subheading .highlight {
+          color: transparent;
+          background-clip: text;
+          -webkit-background-clip: text;
+          background-image: linear-gradient(to right, #8b5cf6, #ec4899);
+          font-weight: 600;
+        }
+        .form-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+        .file-upload-label {
+          display: block;
+          font-size: 0.875rem;
+          font-weight: 700;
+          color: #4b5563;
+          margin-bottom: 0.5rem;
+        }
+        .file-drop-area {
+          margin-top: 0.25rem;
+          display: flex;
+          justify-content: center;
+          padding: 1.25rem 1.5rem 1.5rem;
+          border-width: 2px;
+          border-color: #d1d5db;
+          border-style: dashed;
+          border-radius: 0.75rem;
+          transition: border-color 0.3s;
+        }
+        .file-drop-area:hover {
+          border-color: #6366f1;
+        }
+        .file-drop-content {
+          text-align: center;
+        }
+        .file-drop-content svg {
+          margin: 0 auto;
+          height: 3rem;
+          width: 3rem;
+          color: #9ca3af;
+        }
+        .file-text {
+          display: flex;
+          font-size: 0.875rem;
+          color: #4b5563;
+          justify-content: center;
+        }
+        .upload-link {
+          position: relative;
+          cursor: pointer;
+          background-color: white;
+          border-radius: 0.375rem;
+          font-weight: 500;
+          color: #4f46e5;
+        }
+        .upload-link:hover {
+          color: #4338ca;
+        }
+        .file-hint {
+          padding-left: 0.25rem;
+        }
+        .file-hint-small {
+          font-size: 0.75rem;
+          color: #6b7280;
+        }
+        .image-preview-container {
+          text-align: center;
+        }
+        .image-preview-label {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: #4b5563;
+          margin-bottom: 0.5rem;
+        }
+        .image-preview {
+          margin: 0 auto;
+          max-height: 15rem;
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .controls-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+          .controls-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        .select-label {
+          display: block;
+          font-size: 0.875rem;
+          font-weight: 700;
+          color: #4b5563;
+        }
+        .select-input {
+          margin-top: 0.25rem;
+          display: block;
+          width: 100%;
+          padding: 0.625rem 2.5rem 0.625rem 0.75rem;
+          font-size: 0.875rem;
+          border: 1px solid #d1d5db;
+          border-radius: 0.5rem;
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+          background-position: right 0.5rem center;
+          background-repeat: no-repeat;
+          background-size: 1.5em 1.5em;
+        }
+        .select-input:focus {
+          outline: none;
+          border-color: #6366f1;
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+        }
+        .submit-button-container {
+          margin-top: 2rem;
+        }
+        .submit-button {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1rem 1.5rem;
+          border: 1px solid transparent;
+          font-size: 1rem;
+          font-weight: 700;
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          color: white;
+          background-image: linear-gradient(to right, #4f46e5, #7c3aed);
+          cursor: pointer;
+          transition: transform 0.3s, background-image 0.3s;
+          transform-origin: center;
+        }
+        .submit-button:hover:not(:disabled) {
+          background-image: linear-gradient(to right, #4338ca, #6d28d9);
+          transform: scale(1.05);
+        }
+        .submit-button:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+          box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+        }
+        .submit-button:disabled {
+          background-image: linear-gradient(to right, #a5b4fc, #c4b5fd);
+          cursor: not-allowed;
+        }
+        .spinner {
+          animation: spin 1s linear infinite;
+          margin-right: 0.75rem;
+          margin-left: -0.25rem;
+          height: 1.25rem;
+          width: 1.25rem;
+          color: white;
+        }
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .spinner .opacity-25 {
+          opacity: 0.25;
+        }
+        .spinner .opacity-75 {
+          opacity: 0.75;
+        }
+        .error-message {
+          color: #ef4444;
+          margin-top: 1.5rem;
+          text-align: center;
+          font-weight: 600;
+        }
+        .results-container {
+          margin-top: 2rem;
+          padding-top: 1.5rem;
+          border-top: 1px solid #e5e7eb;
+        }
+        .results-header {
+          font-size: 1.875rem;
+          font-weight: 700;
+          text-align: center;
+          color: #374151;
+          margin-bottom: 1rem;
+        }
+        .enhanced-image {
+          border-radius: 0.75rem;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          margin: 0 auto 1rem auto;
+          display: block;
+          max-width: 100%;
+        }
+        .download-button {
+          width: 100%;
+          margin-top: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0.75rem 1.5rem;
+          border: 1px solid transparent;
+          font-size: 1rem;
+          font-weight: 700;
+          border-radius: 0.5rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          color: white;
+          background-image: linear-gradient(to right, #22c55e, #14b8a6);
+          text-decoration: none;
+          transition: transform 0.3s, background-image 0.3s;
+          transform-origin: center;
+        }
+        .download-button:hover {
+          background-image: linear-gradient(to right, #16a34a, #0d9488);
+          transform: scale(1.05);
+        }
+        .download-button:focus {
+          outline: 2px solid transparent;
+          outline-offset: 2px;
+          box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.5);
+        }
+        footer {
+          margin-top: 2rem;
+          text-align: center;
+          font-size: 0.875rem;
+          color: #6b7280;
+        }
+        footer a {
+          font-weight: 500;
+          color: #4b5563;
+          transition: color 0.3s;
+          text-decoration: none;
+        }
+        footer a:hover {
+          color: #4f46e5;
+        }
+      `}</style>
     </>
   );
                 }
